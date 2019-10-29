@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: "example-spring-boot"
+server:
+  port: 8080
