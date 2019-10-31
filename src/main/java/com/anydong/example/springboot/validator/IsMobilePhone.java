@@ -1,0 +1,25 @@
+package com.anydong.example.springboot.validator;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.*;
+
+/**
+ * IsMobilePhone
+ *
+ * @author Where
+ * @date 2019/10/29
+ */
+@Target({ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Constraint(validatedBy = IsMobilePhoneValidator.class)
+public @interface IsMobilePhone {
+    String message() default "错误的手机格式";
+
+    String[] locales() default {};
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+}
