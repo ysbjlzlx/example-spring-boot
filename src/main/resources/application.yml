@@ -1,5 +1,11 @@
 spring:
   application:
     name: "example-spring-boot"
+  ### MySQL 连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: password
+    url: jdbc:mysql://localhost:3306/database
+    username: username
 server:
   port: 8080

@@ -20,6 +20,5 @@ public class IndexControllerTests {
         mockMvc.perform(MockMvcRequestBuilders.get("/")).andDo(
                 MockMvcResultHandlers.print()
         );
-
     }
 }
