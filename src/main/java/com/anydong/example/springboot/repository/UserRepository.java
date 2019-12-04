@@ -4,6 +4,9 @@ import com.anydong.example.springboot.domain.UserDO;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author Where
+ */
 @Repository
 public interface UserRepository extends CrudRepository<UserDO, String> {
     /**

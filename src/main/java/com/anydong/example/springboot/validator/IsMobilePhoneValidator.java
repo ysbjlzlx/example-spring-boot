@@ -38,6 +38,9 @@ public class IsMobilePhoneValidator implements ConstraintValidator<IsMobilePhone
                 return true;
             }
         }
+        if (logger.isDebugEnabled()) {
+            logger.debug("手机号码校验不通过");
+        }
         return false;
     }
 }

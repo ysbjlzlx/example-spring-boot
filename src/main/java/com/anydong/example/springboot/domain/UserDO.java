@@ -9,6 +9,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
+/**
+ * @author Where
+ */
 @Entity
 @Data
 @Table(name = "user")
