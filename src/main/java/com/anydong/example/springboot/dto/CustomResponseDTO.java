@@ -2,6 +2,9 @@ package com.anydong.example.springboot.dto;
 
 import lombok.Data;
 
+/**
+ * @author Where
+ */
 @Data
 public class CustomResponseDTO {
     private Integer code;
