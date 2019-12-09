@@ -23,4 +23,6 @@ public interface UserRepository extends CrudRepository<UserDO, String> {
      * @return UserDO
      */
     UserDO findFirstByIdIsNotNull();
+
+
 }

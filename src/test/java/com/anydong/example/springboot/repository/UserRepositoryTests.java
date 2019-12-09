@@ -2,21 +2,24 @@ package com.anydong.example.springboot.repository;
 
 import com.anydong.example.springboot.domain.UserDO;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootTest
 @RunWith(SpringRunner.class)
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@EnableJpaAuditing
 public class UserRepositoryTests {
     private UserRepository userRepository;
-    private GeometryFactory geometryFactory;
+    private UserDO userDO;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -24,48 +27,36 @@ public class UserRepositoryTests {
     }
 
     public UserRepositoryTests() {
-        this.geometryFactory = new GeometryFactory();
-    }
-
-    @Before
-    public void init() {
-        Point location = this.geometryFactory.createPoint(new Coordinate(113, 22));
+        GeometryFactory geometryFactory = new GeometryFactory();
+        Point location = geometryFactory.createPoint(new Coordinate(113, 22));
         UserDO.MobilePhone phone = new UserDO.MobilePhone("+86", "17080952312");
-        UserDO userDO = new UserDO();
-        userDO.setEmail("liuzhaowei55@gmial.com");
-        userDO.setPassword("123456");
-        userDO.setNickname("Where");
-        userDO.setAvatar("https://static.moorper.com/avatar.png");
-        userDO.setPhone(phone);
-        userDO.setLocation(location);
-        this.userRepository.save(userDO);
+        this.userDO = new UserDO();
+        this.userDO.setEmail("liuzhaowei55@gmial.com");
+        this.userDO.setPassword("123456");
+        this.userDO.setNickname("Where");
+        this.userDO.setAvatar("https://static.moorper.com/avatar.png");
+        this.userDO.setPhone(phone);
+        this.userDO.setLocation(location);
     }
-
 
     @Test
     public void countTest() {
+        this.userRepository.save(this.userDO);
         long total = this.userRepository.count();
-        Assert.assertEquals(0, total);
-
+        Assert.assertEquals(1, total);
     }
 
     @Test
-    public void addTest() {
-        Point location = this.geometryFactory.createPoint(new Coordinate(113, 22));
-        UserDO.MobilePhone phone = new UserDO.MobilePhone("+86", "17080952312");
-        UserDO userDO = new UserDO();
-        userDO.setEmail("liuzhaowei55@gmial.com");
-        userDO.setPassword("123456");
-        userDO.setNickname("Where");
-        userDO.setAvatar("https://static.moorper.com/avatar.png");
-        userDO.setPhone(phone);
-        userDO.setLocation(location);
-        this.userRepository.save(userDO);
+    public void insertTest() {
+        userDO = this.userRepository.save(this.userDO);
+        Assert.assertEquals(36, userDO.getId().length());
     }
 
     @Test
     public void getTest() {
+        this.userRepository.save(this.userDO);
         UserDO userDO = this.userRepository.findFirstByIdIsNotNull();
         System.out.println(userDO);
+        Assert.assertEquals(36, userDO.getId().length());
     }
 }
