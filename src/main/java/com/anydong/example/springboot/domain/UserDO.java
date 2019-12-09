@@ -1,10 +1,13 @@
 package com.anydong.example.springboot.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.anydong.example.springboot.domain.converter.MobilePhoneConverter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -33,6 +36,7 @@ public class UserDO {
     @Convert(converter = MobilePhoneConverter.class)
     @Column(columnDefinition = "JSON NULL")
     private MobilePhone phone;
+    @JSONField(serialize = false, deserialize = false)
     @Column(columnDefinition = "POINT")
     private Point location;
     @CreatedDate
@@ -51,5 +55,24 @@ public class UserDO {
             this.iddCode = iddCode;
             this.phoneNumber = phoneNumber;
         }
+    }
+
+    @JSONField(name = "location")
+    public String getLocationString() {
+        if (this.getLocation() != null) {
+            return this.getLocation().toString();
+        }
+        return null;
+    }
+
+    @JSONField(name = "location")
+    public void setLocation(String locationString) throws ParseException {
+        WKTReader wktReader = new WKTReader();
+        this.location = (Point) wktReader.read(locationString);
+    }
+
+    @JSONField(name = "location")
+    public void setLocation(Point point) {
+        this.location = point;
     }
 }

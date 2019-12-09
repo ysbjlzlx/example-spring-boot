@@ -1,5 +1,6 @@
 package com.anydong.example.springboot.repository;
 
+import com.alibaba.fastjson.JSON;
 import com.anydong.example.springboot.domain.UserDO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -56,7 +57,7 @@ public class UserRepositoryTests {
     public void getTest() {
         this.userRepository.save(this.userDO);
         UserDO userDO = this.userRepository.findFirstByIdIsNotNull();
-        System.out.println(userDO);
+        System.out.println(JSON.toJSONString(userDO));
         Assert.assertEquals(36, userDO.getId().length());
     }
 }

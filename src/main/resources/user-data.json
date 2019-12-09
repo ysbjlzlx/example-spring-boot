@@ -1,0 +1,11 @@
+[
+  {
+    "_class": "com.anydong.example.springboot.domain.UserDO",
+    "id": "abc-123",
+    "nickname": "Where",
+    "email": "liuzhaowei55@gmail.com",
+    "password": "123456",
+    "avatar": "https://static.moorper.com/avatar.png",
+    "location": "POINT(113 22)"
+  }
+]

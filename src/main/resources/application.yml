@@ -1,12 +1,11 @@
 spring:
   application:
     name: "example-spring-boot"
-  ### MySQL 连接信息
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
     url: "jdbc:mysql://127.0.0.1:3306/example?serverTimezone=UTC"
     username: root
+    password: root
   jpa:
     hibernate:
       ddl-auto: create

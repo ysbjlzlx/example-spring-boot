@@ -22,7 +22,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
         config.setSerializerFeatures(
-                SerializerFeature.WriteMapNullValue
+                SerializerFeature.WriteMapNullValue,
+                SerializerFeature.UseISO8601DateFormat
         );
         converter.setFastJsonConfig(config);
         converters.add(0, converter);
