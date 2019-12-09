@@ -11,8 +11,16 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends CrudRepository<UserDO, String> {
     /**
      * 不带条件，统计所有的用户
+     *
      * @return long 用户总数
      */
     @Override
     long count();
+
+    /**
+     * 随机获取一条数据
+     *
+     * @return UserDO
+     */
+    UserDO findFirstByIdIsNotNull();
 }

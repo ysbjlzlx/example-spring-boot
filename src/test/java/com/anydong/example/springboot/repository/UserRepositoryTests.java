@@ -2,6 +2,7 @@ package com.anydong.example.springboot.repository;
 
 import com.anydong.example.springboot.domain.UserDO;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.locationtech.jts.geom.Coordinate;
@@ -15,11 +16,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class UserRepositoryTests {
     private UserRepository userRepository;
-    private GeometryFactory geometryFactory = new GeometryFactory();
+    private GeometryFactory geometryFactory;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public UserRepositoryTests() {
+        this.geometryFactory = new GeometryFactory();
+    }
+
+    @Before
+    public void init() {
+        Point location = this.geometryFactory.createPoint(new Coordinate(113, 22));
+        UserDO.MobilePhone phone = new UserDO.MobilePhone("+86", "17080952312");
+        UserDO userDO = new UserDO();
+        userDO.setEmail("liuzhaowei55@gmial.com");
+        userDO.setPassword("123456");
+        userDO.setNickname("Where");
+        userDO.setAvatar("https://static.moorper.com/avatar.png");
+        userDO.setPhone(phone);
+        userDO.setLocation(location);
+        this.userRepository.save(userDO);
     }
 
 
@@ -33,12 +52,20 @@ public class UserRepositoryTests {
     @Test
     public void addTest() {
         Point location = this.geometryFactory.createPoint(new Coordinate(113, 22));
+        UserDO.MobilePhone phone = new UserDO.MobilePhone("+86", "17080952312");
         UserDO userDO = new UserDO();
         userDO.setEmail("liuzhaowei55@gmial.com");
         userDO.setPassword("123456");
         userDO.setNickname("Where");
         userDO.setAvatar("https://static.moorper.com/avatar.png");
+        userDO.setPhone(phone);
         userDO.setLocation(location);
         this.userRepository.save(userDO);
+    }
+
+    @Test
+    public void getTest() {
+        UserDO userDO = this.userRepository.findFirstByIdIsNotNull();
+        System.out.println(userDO);
     }
 }

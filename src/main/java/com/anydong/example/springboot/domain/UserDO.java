@@ -1,5 +1,6 @@
 package com.anydong.example.springboot.domain;
 
+import com.anydong.example.springboot.domain.converter.MobilePhoneConverter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -29,6 +30,9 @@ public class UserDO {
     private String password;
     private String nickname;
     private String avatar;
+    @Convert(converter = MobilePhoneConverter.class)
+    @Column(columnDefinition = "JSON NULL")
+    private MobilePhone phone;
     @Column(columnDefinition = "POINT")
     private Point location;
     @CreatedDate
@@ -37,4 +41,15 @@ public class UserDO {
     @LastModifiedDate
     @Column(nullable = false)
     private Date updatedAt;
+
+    @Data
+    public static class MobilePhone {
+        private String iddCode;
+        private String phoneNumber;
+
+        public MobilePhone(String iddCode, String phoneNumber) {
+            this.iddCode = iddCode;
+            this.phoneNumber = phoneNumber;
+        }
+    }
 }
