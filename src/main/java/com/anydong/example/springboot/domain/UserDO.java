@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -58,7 +59,7 @@ public class UserDO {
     }
 
     @JSONField(name = "location")
-    public String getLocationString() {
+    public String getLocationString() throws IOException {
         if (this.getLocation() != null) {
             return this.getLocation().toString();
         }

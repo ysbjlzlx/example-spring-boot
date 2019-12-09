@@ -56,6 +56,12 @@
             <artifactId>hibernate-spatial</artifactId>
             <version>5.4.9.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.geotools/gt-geojson -->
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson</artifactId>
+            <version>22.2</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,6 +83,10 @@
         <repository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
+        </repository>
+        <repository>
+            <id>boundless</id>
+            <url>https://repo.boundlessgeo.com/main</url>
         </repository>
     </repositories>
 </project>
