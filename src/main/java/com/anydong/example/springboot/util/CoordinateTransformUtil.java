@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CoordinateTransformUtil {
+    public enum CoordinateType {
+        WGS84, GCJ02, BD09
+    }
     /**
      * PI π
      * //
@@ -19,6 +22,7 @@ public class CoordinateTransformUtil {
      * a 长半轴
      * ee 偏心率平方
      */
+    private final double x_PI = 3.14159265358979324 * 3000.0 / 180.0;
     private final double PI = 3.1415926535897932384626;
     private final double a = 6378245.0;
     private final double ee = 0.00669342162296594323;
@@ -55,6 +59,24 @@ public class CoordinateTransformUtil {
         var mglat = lat + dlat;
         var mglng = lng + dlng;
         return new double[]{mglng, mglat};
+    }
+
+    public double[] gcj02ToBd09(double lng, double lat) {
+        var z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * x_PI);
+        var theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * x_PI);
+        var bdLng = z * Math.cos(theta) + 0.0065;
+        var bdLat = z * Math.sin(theta) + 0.006;
+        return new double[]{bdLng, bdLat};
+    }
+
+    public double[] bd09ToGcj02(double lng, double lat) {
+        var x = lng - 0.0065;
+        var y = lat - 0.006;
+        var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_PI);
+        var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_PI);
+        var gcjLng = z * Math.cos(theta);
+        var gcgLat = z * Math.sin(theta);
+        return new double[]{gcjLng, gcgLat};
     }
 
     private double transformLng(double lng, double lat) {
