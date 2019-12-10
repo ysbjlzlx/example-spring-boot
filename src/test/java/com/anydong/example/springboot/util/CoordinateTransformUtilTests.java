@@ -15,4 +15,13 @@ public class CoordinateTransformUtilTests {
         System.out.println(res[0]);
         System.out.println(res[1]);
     }
+
+    @Test
+    public void wgs84ToGcj02Test() {
+        double lng = 116.481499;
+        double lat = 39.990475;
+        double[] res = this.transformUtil.wgs84ToGcj02(lng, lat);
+        System.out.println(res[0]);
+        System.out.println(res[1]);
+    }
 }
