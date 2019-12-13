@@ -10,6 +10,16 @@ import java.util.TimeZone;
  */
 public class DateUtil {
     /**
+     * e.g: 2019-12-13T22:21:47CST
+     * e.g: 2019-12-13T14:23:44.945Z
+     */
+    public static final String PATTERN_ISO = "yyyy-MM-dd'T'HH:mm:ssz";
+    /**
+     * e.g: Fri, 13 Dec 2019 14:23:58 GMT
+     */
+    public static final String PATTERN_UTC = "yyyy-MM-dd'T'HH:mm:ssz";
+
+    /**
      * 参考：https://date-fns.org/v2.8.1/docs/format#syntax
      *
      * @param date   原始日期时间

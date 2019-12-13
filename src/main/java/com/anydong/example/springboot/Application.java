@@ -2,9 +2,9 @@ package com.anydong.example.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 import javax.annotation.PostConstruct;
-import java.util.TimeZone;
 
 /**
  * Application
@@ -13,6 +13,7 @@ import java.util.TimeZone;
  * @date 2019/10/31
  */
 @SpringBootApplication
+@ServletComponentScan
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -24,7 +25,6 @@ public class Application {
      */
     @PostConstruct
     public void init() {
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
         System.setProperty("tomcat.util.http.parser.HttpParser.requestTargetAllow", "|{}");
     }
 }
