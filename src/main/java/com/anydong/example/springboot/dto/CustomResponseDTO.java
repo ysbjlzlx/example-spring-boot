@@ -15,4 +15,10 @@ public class CustomResponseDTO {
         this.code = code;
         this.message = message;
     }
+
+    public CustomResponseDTO(int code, String message, Object data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
 }

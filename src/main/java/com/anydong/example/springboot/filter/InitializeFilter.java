@@ -21,7 +21,6 @@ public class InitializeFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        Locale.setDefault(servletRequest.getLocale());
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
         System.out.println(Locale.getDefault().toString());
         filterChain.doFilter(servletRequest, servletResponse);
