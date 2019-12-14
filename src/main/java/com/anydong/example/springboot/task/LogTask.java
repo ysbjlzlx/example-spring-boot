@@ -1,6 +1,6 @@
 package com.anydong.example.springboot.task;
 
-import com.anydong.example.springboot.util.DateUtil;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,6 +17,6 @@ public class LogTask {
 
     @Scheduled(fixedDelay = 10000)
     public void printDatetime() {
-        LOGGER.info(DateUtil.format(new Date(), DateUtil.PATTERN_ISO));
+        LOGGER.info(DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(new Date()));
     }
 }
