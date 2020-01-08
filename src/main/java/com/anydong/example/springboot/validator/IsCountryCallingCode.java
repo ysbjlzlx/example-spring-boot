@@ -13,8 +13,8 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = IsMobilePhoneValidator.class)
-public @interface IsMobilePhone {
+@Constraint(validatedBy = IsCountryCallingCodeValidator.class)
+public @interface IsCountryCallingCode {
     String message() default "错误的国际电话区号";
 
     String[] locales() default {};
