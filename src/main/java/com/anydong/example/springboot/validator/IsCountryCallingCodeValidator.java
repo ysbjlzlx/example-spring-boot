@@ -18,13 +18,13 @@ import java.util.regex.Pattern;
  * 参看：https://github.com/validatorjs/validator.js/blob/master/src/lib/isMobilePhone.js
  * </p>
  */
-public class IsCountryCallingCodeValidator implements ConstraintValidator<IsMobilePhone, String> {
+public class IsCountryCallingCodeValidator implements ConstraintValidator<IsCountryCallingCode, String> {
     private final Logger logger = LoggerFactory.getLogger(IsCountryCallingCodeValidator.class);
     private Map<String, String> phonePatternMap = new HashMap<>();
     private String[] locales;
 
     @Override
-    public void initialize(IsMobilePhone constraintAnnotation) {
+    public void initialize(IsCountryCallingCode constraintAnnotation) {
         phonePatternMap.put("zh-CN", "(\\+|00)?86");
         phonePatternMap.put("zh-HK", "^(\\+?852$");
         locales = constraintAnnotation.locales();
