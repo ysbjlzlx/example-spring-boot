@@ -4,6 +4,14 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
 ### STS ###
 .apt_generated
 .classpath
