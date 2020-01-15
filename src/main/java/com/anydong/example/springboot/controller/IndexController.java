@@ -4,10 +4,9 @@ import com.anydong.example.springboot.dto.CustomResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -17,18 +16,18 @@ import java.util.TimeZone;
 /**
  * @author Where
  */
-@RestController
-@RequestMapping(produces = "application/json; charset=utf-8")
+@Controller
 public class IndexController {
     @Autowired
     MessageSource messageSource;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public CustomResponseDTO index() {
-        return new CustomResponseDTO(100000, "Hello World");
+    @GetMapping
+    public String index() {
+        return "index";
     }
 
     @GetMapping(value = "locale")
+    @ResponseBody
     public CustomResponseDTO locale() {
         Map<String, String> data = new HashMap<>();
         data.put("locale.Locale", LocaleContextHolder.getLocale().toString());
