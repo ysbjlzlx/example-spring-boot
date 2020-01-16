@@ -1,7 +1,7 @@
 package com.anydong.example.springboot.exception;
 
 
-import com.anydong.example.springboot.dto.CustomResponseDTO;
+import com.anydong.example.springboot.model.dto.CustomResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BindException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public CustomResponseDTO bindExceptionHandler(BindException e) {
+    public CustomResponseDto bindExceptionHandler(BindException e) {
         Map<String, List> errors = new HashMap<>();
         for (FieldError error : e.getFieldErrors()) {
             if (errors.containsKey(error.getField())) {
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
                 errors.put(error.getField(), errorMessageList);
             }
         }
-        CustomResponseDTO customResponseDTO = new CustomResponseDTO(100422, "");
+        CustomResponseDto customResponseDTO = new CustomResponseDto(100422, "");
         customResponseDTO.setData(errors);
         return customResponseDTO;
     }

@@ -1,7 +1,7 @@
 package com.anydong.example.springboot.repository;
 
 import com.alibaba.fastjson.JSON;
-import com.anydong.example.springboot.domain.UserDO;
+import com.anydong.example.springboot.domain.UserDo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @EnableJpaAuditing
 public class UserRepositoryTests {
     private UserRepository userRepository;
-    private UserDO userDO;
+    private UserDo userDO;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -30,8 +30,8 @@ public class UserRepositoryTests {
     public UserRepositoryTests() {
         GeometryFactory geometryFactory = new GeometryFactory();
         Point location = geometryFactory.createPoint(new Coordinate(113, 22));
-        UserDO.MobilePhone phone = new UserDO.MobilePhone("+86", "17080952312");
-        this.userDO = new UserDO();
+        UserDo.MobilePhone phone = new UserDo.MobilePhone("+86", "17080952312");
+        this.userDO = new UserDo();
         this.userDO.setEmail("liuzhaowei55@gmial.com");
         this.userDO.setPassword("123456");
         this.userDO.setNickname("Where");
@@ -56,7 +56,7 @@ public class UserRepositoryTests {
     @Test
     public void getTest() {
         this.userRepository.save(this.userDO);
-        UserDO userDO = this.userRepository.findFirstByIdIsNotNull();
+        UserDo userDO = this.userRepository.findFirstByIdIsNotNull();
         System.out.println(JSON.toJSONString(userDO));
         Assert.assertEquals(36, userDO.getId().length());
     }

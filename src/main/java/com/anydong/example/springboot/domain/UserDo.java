@@ -24,7 +24,7 @@ import java.util.Date;
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-public class UserDO {
+public class UserDo {
     @Id
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     @GeneratedValue(generator = "system-uuid")

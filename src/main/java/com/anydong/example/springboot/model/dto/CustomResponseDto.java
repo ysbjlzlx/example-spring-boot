@@ -1,4 +1,4 @@
-package com.anydong.example.springboot.dto;
+package com.anydong.example.springboot.model.dto;
 
 import lombok.Data;
 
@@ -6,17 +6,17 @@ import lombok.Data;
  * @author Where
  */
 @Data
-public class CustomResponseDTO {
+public class CustomResponseDto {
     private Integer code;
     private String message;
     private Object data;
 
-    public CustomResponseDTO(int code, String message) {
+    public CustomResponseDto(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public CustomResponseDTO(int code, String message, Object data) {
+    public CustomResponseDto(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;

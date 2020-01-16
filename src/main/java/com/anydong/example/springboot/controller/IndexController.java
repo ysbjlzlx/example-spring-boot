@@ -1,6 +1,6 @@
 package com.anydong.example.springboot.controller;
 
-import com.anydong.example.springboot.dto.CustomResponseDTO;
+import com.anydong.example.springboot.model.dto.CustomResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -28,12 +28,12 @@ public class IndexController {
 
     @GetMapping(value = "locale")
     @ResponseBody
-    public CustomResponseDTO locale() {
+    public CustomResponseDto locale() {
         Map<String, String> data = new HashMap<>();
         data.put("locale.Locale", LocaleContextHolder.getLocale().toString());
         data.put("locale.Timezone", LocaleContextHolder.getTimeZone().toString());
         data.put("locale", Locale.getDefault().toString());
         data.put("timezone", TimeZone.getDefault().toString());
-        return new CustomResponseDTO(100000, messageSource.getMessage("welcome", null, LocaleContextHolder.getLocale()), data);
+        return new CustomResponseDto(100000, messageSource.getMessage("welcome", null, LocaleContextHolder.getLocale()), data);
     }
 }
