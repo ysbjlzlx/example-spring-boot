@@ -1,6 +1,6 @@
 package com.anydong.example.springboot.repository;
 
-import com.anydong.example.springboot.domain.UserDo;
+import com.anydong.example.springboot.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @author Where
  */
 @Repository
-public interface UserRepository extends CrudRepository<UserDo, String> {
+public interface UserRepository extends CrudRepository<User, String> {
     /**
      * 不带条件，统计所有的用户
      *
@@ -20,9 +20,9 @@ public interface UserRepository extends CrudRepository<UserDo, String> {
     /**
      * 随机获取一条数据
      *
-     * @return UserDo
+     * @return User
      */
-    UserDo findFirstByIdIsNotNull();
+    User findFirstByIdIsNotNull();
 
 
 }

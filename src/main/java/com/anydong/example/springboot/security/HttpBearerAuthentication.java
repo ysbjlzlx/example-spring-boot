@@ -1,6 +1,6 @@
 package com.anydong.example.springboot.security;
 
-import com.anydong.example.springboot.domain.UserDo;
+import com.anydong.example.springboot.domain.User;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
  */
 public class HttpBearerAuthentication extends AbstractAuthenticationToken {
     private String credentials;
-    private UserDo principal;
+    private User principal;
 
     public HttpBearerAuthentication(HttpBearerAuthenticationDetails details) {
         super(null);
@@ -19,7 +19,7 @@ public class HttpBearerAuthentication extends AbstractAuthenticationToken {
         this.setDetails(details);
     }
 
-    public HttpBearerAuthentication(HttpBearerAuthenticationDetails details, UserDo principal,
+    public HttpBearerAuthentication(HttpBearerAuthenticationDetails details, User principal,
                                     Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.setAuthenticated(true);
@@ -34,7 +34,7 @@ public class HttpBearerAuthentication extends AbstractAuthenticationToken {
     }
 
     @Override
-    public UserDo getPrincipal() {
+    public User getPrincipal() {
         return this.principal;
     }
 }

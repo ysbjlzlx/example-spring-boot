@@ -1,7 +1,7 @@
 package com.anydong.example.springboot.repository;
 
 import com.alibaba.fastjson.JSON;
-import com.anydong.example.springboot.domain.UserDo;
+import com.anydong.example.springboot.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @EnableJpaAuditing
 public class UserRepositoryTests {
     private UserRepository userRepository;
-    private UserDo userDO;
+    private User user;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -30,34 +30,34 @@ public class UserRepositoryTests {
     public UserRepositoryTests() {
         GeometryFactory geometryFactory = new GeometryFactory();
         Point location = geometryFactory.createPoint(new Coordinate(113, 22));
-        UserDo.MobilePhone phone = new UserDo.MobilePhone("+86", "17080952312");
-        this.userDO = new UserDo();
-        this.userDO.setEmail("liuzhaowei55@gmial.com");
-        this.userDO.setPassword("123456");
-        this.userDO.setNickname("Where");
-        this.userDO.setAvatar("https://static.moorper.com/avatar.png");
-        this.userDO.setPhone(phone);
-        this.userDO.setLocation(location);
+        User.MobilePhone phone = new User.MobilePhone("+86", "17080952312");
+        this.user = new User();
+        this.user.setEmail("liuzhaowei55@gmial.com");
+        this.user.setPassword("123456");
+        this.user.setNickname("Where");
+        this.user.setAvatar("https://static.moorper.com/avatar.png");
+        this.user.setPhone(phone);
+        this.user.setLocation(location);
     }
 
     @Test
     public void countTest() {
-        this.userRepository.save(this.userDO);
+        this.userRepository.save(this.user);
         long total = this.userRepository.count();
         Assert.assertEquals(1, total);
     }
 
     @Test
     public void insertTest() {
-        userDO = this.userRepository.save(this.userDO);
-        Assert.assertEquals(36, userDO.getId().length());
+        user = this.userRepository.save(this.user);
+        Assert.assertEquals(36, user.getId().length());
     }
 
     @Test
     public void getTest() {
-        this.userRepository.save(this.userDO);
-        UserDo userDO = this.userRepository.findFirstByIdIsNotNull();
-        System.out.println(JSON.toJSONString(userDO));
-        Assert.assertEquals(36, userDO.getId().length());
+        this.userRepository.save(this.user);
+        User user = this.userRepository.findFirstByIdIsNotNull();
+        System.out.println(JSON.toJSONString(user));
+        Assert.assertEquals(36, user.getId().length());
     }
 }

@@ -1,6 +1,6 @@
 [
   {
-    "_class": "com.anydong.example.springboot.domain.UserDO",
+    "_class": "com.anydong.example.springboot.domain.User",
     "id": "abc-123",
     "nickname": "Where",
     "email": "liuzhaowei55@gmail.com",

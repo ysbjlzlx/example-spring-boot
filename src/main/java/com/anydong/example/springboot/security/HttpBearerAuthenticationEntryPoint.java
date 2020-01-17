@@ -6,31 +6,47 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
+/**
+ * @author where
+ */
+@Component
 public class HttpBearerAuthenticationEntryPoint implements AuthenticationEntryPoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpBearerAuthenticationEntryPoint.class);
 
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
         CustomResponseDto responseDto = null;
+        LOGGER.info(e.getMessage());
         if (e instanceof BadCredentialsException) {
             responseDto = new CustomResponseDto(100403, "Token 不合法");
+        } else if (e instanceof AuthenticationCredentialsNotFoundException) {
+            responseDto = new CustomResponseDto(100403, "未找到 Token");
+        } else {
+            responseDto = new CustomResponseDto(100401, e.getMessage());
+            e.printStackTrace();
         }
+
         httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+        httpServletResponse.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
         httpServletResponse.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         OutputStream os = httpServletResponse.getOutputStream();
         os.write(JSON.toJSONBytes(responseDto));
-        os.close();
         os.flush();
+        os.close();
     }
 }

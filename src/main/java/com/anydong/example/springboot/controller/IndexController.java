@@ -26,7 +26,7 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "locale")
+    @GetMapping(value = "locale", produces = "application/json; charset=utf-8")
     @ResponseBody
     public CustomResponseDto locale() {
         Map<String, String> data = new HashMap<>();
