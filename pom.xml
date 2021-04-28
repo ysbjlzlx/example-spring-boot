@@ -106,13 +106,21 @@
         <repository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>spring-snapshot</id>
+            <url>https://repo.spring.io/libs-snapshot</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
         </repository>
         <repository>
             <id>boundless</id>
             <url>https://repo.boundlessgeo.com/main</url>
         </repository>
         <repository>
-            <id>osgeo</id>
+            <id>osgeo-release</id>
             <name>OSGeo Release Repository</name>
             <url>https://repo.osgeo.org/repository/release</url>
             <snapshots><enabled>false</enabled></snapshots>
