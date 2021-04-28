@@ -104,27 +104,29 @@
     </build>
     <repositories>
         <repository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-            <snapshots><enabled>false</enabled></snapshots>
-            <releases><enabled>true</enabled></releases>
+            <id>central</id>
+            <url>https://maven.aliyun.com/repository/central</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
         <repository>
-            <id>spring-snapshot</id>
-            <url>https://repo.spring.io/libs-snapshot</url>
-            <snapshots><enabled>true</enabled></snapshots>
-            <releases><enabled>false</enabled></releases>
+            <id>spring</id>
+            <url>https://maven.aliyun.com/repository/spring</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
         <repository>
-            <id>boundless</id>
-            <url>https://repo.boundlessgeo.com/main</url>
-        </repository>
-        <repository>
-            <id>osgeo-release</id>
-            <name>OSGeo Release Repository</name>
-            <url>https://repo.osgeo.org/repository/release</url>
-            <snapshots><enabled>false</enabled></snapshots>
-            <releases><enabled>true</enabled></releases>
+            <id>geoserver-releases</id>
+            <name>Boundless Repository</name>
+            <url>https://repo.osgeo.org/repository/Geoserver-releases/</url>
         </repository>
         <repository>
             <id>osgeo-snapshot</id>
@@ -132,6 +134,13 @@
             <url>https://repo.osgeo.org/repository/snapshot</url>
             <snapshots><enabled>true</enabled></snapshots>
             <releases><enabled>false</enabled></releases>
+        </repository>
+        <repository>
+            <id>osgeo-release</id>
+            <name>OSGeo Release Repository</name>
+            <url>https://repo.osgeo.org/repository/release</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
         </repository>
     </repositories>
 </project>
