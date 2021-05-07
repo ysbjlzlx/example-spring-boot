@@ -1,6 +1,6 @@
 package com.anydong.example.springboot.security;
 
-import com.anydong.example.springboot.domain.User;
+import com.anydong.example.springboot.domain.UserDO;
 import com.anydong.example.springboot.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +29,8 @@ public class HttpBearerAuthenticationProvider implements AuthenticationProvider 
             throw new BadCredentialsException("Token 不合法");
         }
         // 获取 Token 对应用户
-        User user = this.userRepository.findFirstByIdIsNotNull();
-        return new HttpBearerAuthentication(details, user, null);
+        UserDO userDO = this.userRepository.findFirstByIdIsNotNull();
+        return new HttpBearerAuthentication(details, userDO, null);
     }
 
     @Override
