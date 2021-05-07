@@ -2,8 +2,7 @@ package com.anydong.example.springboot.security;
 
 import com.anydong.example.springboot.domain.UserDO;
 import com.anydong.example.springboot.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -13,8 +12,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class HttpBearerAuthenticationProvider implements AuthenticationProvider {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserRepository userRepository;
     private final String DEFAULT_TOKEN = "Token";

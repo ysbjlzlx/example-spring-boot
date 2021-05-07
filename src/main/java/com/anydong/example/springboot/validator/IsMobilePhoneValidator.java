@@ -1,7 +1,6 @@
 package com.anydong.example.springboot.validator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -18,9 +17,9 @@ import java.util.regex.Pattern;
  * 参看：https://github.com/validatorjs/validator.js/blob/master/src/lib/isMobilePhone.js
  * </p>
  */
+@Slf4j
 public class IsMobilePhoneValidator implements ConstraintValidator<IsMobilePhone, String> {
-    private final Logger logger = LoggerFactory.getLogger(IsMobilePhoneValidator.class);
-    private Map<String, String> phonePatternMap = new HashMap<>();
+    private final Map<String, String> phonePatternMap = new HashMap<>();
     private String[] locales;
 
     @Override
@@ -34,12 +33,12 @@ public class IsMobilePhoneValidator implements ConstraintValidator<IsMobilePhone
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         for (String locale : locales) {
             String pattern = phonePatternMap.get(locale);
-            if (s != null && pattern != null && Pattern.matches(pattern, s)) {
+            if (s!=null && pattern!=null && Pattern.matches(pattern, s)) {
                 return true;
             }
         }
-        if (logger.isDebugEnabled()) {
-            logger.debug("手机号码校验不通过");
+        if (log.isDebugEnabled()) {
+            log.debug("手机号码校验不通过");
         }
         return false;
     }
