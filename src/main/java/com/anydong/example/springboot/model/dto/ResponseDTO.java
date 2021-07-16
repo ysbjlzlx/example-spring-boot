@@ -6,17 +6,17 @@ import lombok.Data;
  * @author Where
  */
 @Data
-public class CustomResponseDto {
+public class ResponseDTO {
     private Integer code;
     private String message;
     private Object data;
 
-    public CustomResponseDto(int code, String message) {
+    public ResponseDTO(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public CustomResponseDto(int code, String message, Object data) {
+    public ResponseDTO(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;

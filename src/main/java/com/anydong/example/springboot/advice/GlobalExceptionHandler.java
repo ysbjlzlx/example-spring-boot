@@ -1,7 +1,7 @@
 package com.anydong.example.springboot.advice;
 
 import com.anydong.example.springboot.Bean.ValidatedResult;
-import com.anydong.example.springboot.model.dto.CustomResponseDto;
+import com.anydong.example.springboot.model.dto.ResponseDTO;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.http.HttpStatus;
@@ -27,14 +27,14 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public CustomResponseDto bindExceptionHandler(BindException e) {
+    public ResponseDTO bindExceptionHandler(BindException e) {
         ValidatedResult validatedResult = new ValidatedResult(false);
         for (FieldError error : e.getFieldErrors()) {
             validatedResult.addError(error.getField(), error.getDefaultMessage());
         }
-        CustomResponseDto customResponseDTO = new CustomResponseDto(100422, "");
-        customResponseDTO.setData(validatedResult.getErrors());
-        return customResponseDTO;
+        ResponseDTO responseDTO = new ResponseDTO(100422, "");
+        responseDTO.setData(validatedResult.getErrors());
+        return responseDTO;
     }
 
     /**
@@ -45,15 +45,15 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public CustomResponseDto constraintViolationExceptionHandler(ConstraintViolationException e) {
+    public ResponseDTO constraintViolationExceptionHandler(ConstraintViolationException e) {
         ValidatedResult validatedResult = new ValidatedResult(false);
         e.getConstraintViolations().forEach(constraintViolation -> {
             String field = constraintViolation.getPropertyPath().toString();
             validatedResult.addError(field, constraintViolation.getMessage());
         });
-        CustomResponseDto customResponseDTO = new CustomResponseDto(100422, "");
-        customResponseDTO.setData(validatedResult.getErrors());
-        return customResponseDTO;
+        ResponseDTO responseDTO = new ResponseDTO(100422, "");
+        responseDTO.setData(validatedResult.getErrors());
+        return responseDTO;
 
     }
 
@@ -65,14 +65,14 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public CustomResponseDto methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+    public ResponseDTO methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
         ValidatedResult validatedResult = new ValidatedResult(false);
         for (FieldError error : e.getFieldErrors()) {
             validatedResult.addError(error.getField(), error.getDefaultMessage());
         }
-        CustomResponseDto customResponseDTO = new CustomResponseDto(100422, "");
-        customResponseDTO.setData(validatedResult.getErrors());
-        return customResponseDTO;
+        ResponseDTO responseDTO = new ResponseDTO(100422, "");
+        responseDTO.setData(validatedResult.getErrors());
+        return responseDTO;
     }
 
     /**
@@ -83,7 +83,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-    public CustomResponseDto httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e) {
+    public ResponseDTO httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e) {
         ValidatedResult validatedResult = new ValidatedResult(false);
         if (e.getCause() instanceof InvalidFormatException) {
             InvalidFormatException invalidFormatException = (InvalidFormatException) e.getCause();
@@ -92,9 +92,9 @@ public class GlobalExceptionHandler {
                 validatedResult.addError(reference.getFieldName(), invalidFormatException.getOriginalMessage());
             }
         }
-        CustomResponseDto customResponseDTO = new CustomResponseDto(100422, "");
-        customResponseDTO.setData(validatedResult.getErrors());
-        return customResponseDTO;
+        ResponseDTO responseDTO = new ResponseDTO(100422, "");
+        responseDTO.setData(validatedResult.getErrors());
+        return responseDTO;
     }
 
 }

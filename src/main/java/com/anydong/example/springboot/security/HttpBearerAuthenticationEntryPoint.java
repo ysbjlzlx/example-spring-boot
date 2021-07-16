@@ -1,7 +1,7 @@
 package com.anydong.example.springboot.security;
 
 import com.alibaba.fastjson.JSON;
-import com.anydong.example.springboot.model.dto.CustomResponseDto;
+import com.anydong.example.springboot.model.dto.ResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,14 +29,14 @@ public class HttpBearerAuthenticationEntryPoint implements AuthenticationEntryPo
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
-        CustomResponseDto responseDto = null;
+        ResponseDTO responseDto = null;
         log.info(e.getMessage());
         if (e instanceof BadCredentialsException) {
-            responseDto = new CustomResponseDto(100403, "Token 不合法");
+            responseDto = new ResponseDTO(100403, "Token 不合法");
         } else if (e instanceof AuthenticationCredentialsNotFoundException) {
-            responseDto = new CustomResponseDto(100403, "未找到 Token");
+            responseDto = new ResponseDTO(100403, "未找到 Token");
         } else {
-            responseDto = new CustomResponseDto(100401, e.getMessage());
+            responseDto = new ResponseDTO(100401, e.getMessage());
             e.printStackTrace();
         }
 
