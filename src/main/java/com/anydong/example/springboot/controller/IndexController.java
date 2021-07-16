@@ -4,6 +4,7 @@ import com.anydong.example.springboot.model.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +27,7 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "locale", produces = "application/json; charset=utf-8")
+    @GetMapping(value = "locale", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO locale() {
         Map<String, String> data = new HashMap<>();

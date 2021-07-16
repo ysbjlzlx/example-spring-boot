@@ -21,4 +21,10 @@ public class ResponseDTO {
         this.message = message;
         this.data = data;
     }
+
+    public ResponseDTO(Object data) {
+        this.code = 100000;
+        this.message = "OK";
+        this.data = data;
+    }
 }
