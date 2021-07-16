@@ -22,7 +22,7 @@ public class I18nConfig implements WebMvcConfigurer {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setCookieName(LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
         cookieLocaleResolver.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
-        cookieLocaleResolver.setDefaultTimeZone(TimeZone.getTimeZone("GMT+09:00"));
+        cookieLocaleResolver.setDefaultTimeZone(TimeZone.getTimeZone("GMT+08:00"));
         return cookieLocaleResolver;
     }
 

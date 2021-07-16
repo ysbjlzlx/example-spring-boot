@@ -11,12 +11,12 @@ public class ResponseDTO {
     private String message;
     private Object data;
 
-    public ResponseDTO(int code, String message) {
+    public ResponseDTO(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public ResponseDTO(int code, String message, Object data) {
+    public ResponseDTO(Integer code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
