@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ObjectMapperConfig {
+public class ObjectMapperConfiguration {
     /**
      * https://github.com/FasterXML/jackson-databind/wiki/Deserialization-Features#value-conversions-coercion
      *
